@@ -4,12 +4,21 @@ part 'controller.g.dart';
 class Controller = ControllerBase with _$Controller;
 
 abstract class ControllerBase with Store{
+  @observable
+  String nome = '';
 
   @observable
-  int counter = 0;
+  String sobrenome = '';
+  @computed
+  String get nomecompleto => "$nome $sobrenome";
 
   @action
-  increment(){
-    counter++;
+  mudarNome(String newName){
+    nome = newName;
   }
+  @action
+  mudarSobreNome(String newName){
+    sobrenome = newName;
+  }
+
 }
