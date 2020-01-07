@@ -1,24 +1,39 @@
 import 'package:mobx/mobx.dart';
+import 'models/client.dart';
 part 'controller.g.dart';
 
-class Controller = ControllerBase with _$Controller;
+class Controller = _ControllerBase with _$Controller;
 
-abstract class ControllerBase with Store{
-  @observable
-  String nome = '';
+abstract class _ControllerBase with Store{
+  var client = Client();
 
-  @observable
-  String sobrenome = '';
   @computed
-  String get nomecompleto => "$nome $sobrenome";
+  bool get isValid => (validateName() == null && validateEmail() == null);
 
-  @action
-  mudarNome(String newName){
-    nome = newName;
+
+  String validateName(){
+    if(client.name == null || client.name.isEmpty){
+      return 'este campo é obrigatório';
+    }else if(client.name.length<3){
+      return "seu nome precisa ter mais de 3 caracteres";
+    }
+    return null;
   }
-  @action
-  mudarSobreNome(String newName){
-    sobrenome = newName;
+  String validateCpf(){
+    if(client.cpf == null || client.cpf.isEmpty){
+      return 'este campo é obrigatório';
+    }else if(client.cpf.length<3){
+      return "seu cpf precisa ter mais de 3 caracteres";
+    }
+    return null;
   }
 
+  String validateEmail(){
+    if(client.email == null || client.email.isEmpty){
+      return 'este campo é obrigatório';
+    }else if(client.email.length<3){
+      return "seu email precisa ter mais de 3 caracteres";
+    }
+    return null;
+  }
 }
