@@ -25,7 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_mobx:
   flutter_modular:
-  provider:
+  get_it:
   mobx:
 
 dev_dependencies:
