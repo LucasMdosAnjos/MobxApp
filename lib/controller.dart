@@ -19,7 +19,7 @@ abstract class _ControllerBase with Store{
     }
     return null;
   }
-  String validateCpf(){
+    String validateCpf(){
     if(client.cpf == null || client.cpf.isEmpty){
       return 'este campo é obrigatório';
     }else if(client.cpf.length<3){
@@ -35,5 +35,8 @@ abstract class _ControllerBase with Store{
       return "seu email precisa ter mais de 3 caracteres";
     }
     return null;
+  }
+  dispose(){
+
   }
 }
